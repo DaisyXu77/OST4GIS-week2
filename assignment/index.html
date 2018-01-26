@@ -20,7 +20,7 @@
     <script>
       var map = L.map('map', {
         center: [39.9522, -75.1639],
-        zoom: 14
+        zoom: 12
       });
       var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -55,10 +55,39 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
+      // Part 1--represents the health_centers dataset in array form
 
+      var CsvArray = []                        // Create an empty new array for CSV
+      var jsonToCsv = function(json) {
+        CsvArray[0]=Object.keys(json[0]);      // Get the keys of the new array from the first item of the old array
+        for (var i=0; i<json.length;i++){      // Loop through each item in the old array
+          valuesArray= Object.values(json[i]); // Get the value of each item
+          CsvArray.push(valuesArray);          // Add the values to the new array
+        }
+        json = CsvArray;
+        console.log(json);                     // Print the new array to make sure items are added
+      };
 
-      var addMarkers = function(map) {};
+      // Part 2--Add markers for health centers
+
+      var dentalIcon = L.icon({      // Icon for dental locations
+        iconUrl: 'dental-icon.png',  // Source : http://www.pvhc.net/Icon-Dental-Insurance20nzskepbq/
+        iconSize: [38, 38],
+        iconAnchor: [10, 10],
+        popupAnchor: [0, -10]
+      });
+
+      var addMarkers = function(map) {                      // Create function to add markers for dental locations and other filtered centers
+        for (var i=0; i<healthCenters.length;i++){          // Loop through each item in the healthCenters array
+          if (healthCenters[i]['ZIP']>19139 && healthCenters[i]['ZIP']<=19149){  //If has zip code between 19140 and 19149
+            if (healthCenters[i]['DENTAL_PHONE']==='N/A'){  // If the center is not a dental location, show its name
+              L.marker([healthCenters[i]['LAT'],healthCenters[i]['LNG']]).addTo(map).bindPopup(healthCenters[i]['NAME']).openPopup();}
+            else{                                           // If the center is a dental location, show its name and the different icon
+              L.marker([healthCenters[i]['LAT'],healthCenters[i]['LNG']],{icon:dentalIcon}).addTo(map).bindPopup(healthCenters[i]['NAME']).openPopup();}
+          }
+        }
+      }
+
 
       /* =====================
 

@@ -12,17 +12,37 @@
 
     ## Introduction
 
-    Write a program that uses console.log to print the numbers from 1 to 100. For multiples of three, print "Fizz" instead of the number. For multiples of five, print "Buzz" instead of the number. For numbers which are multiples of both three and five, print "FizzBuzz".
+    Write a program that uses console.log to print the numbers from 1 to 100.
+    For multiples of three, print "Fizz" instead of the number.
+    For multiples of five, print "Buzz" instead of the number.
+    For numbers which are multiples of both three and five, print "FizzBuzz".
 
     Believe it or not, this is a common programming challenge in job interviews.
 
     ===================== */
 
-    /* =====================
 
-    Start code
-
-    ===================== */
+    for (var i = 0; i<100;i++) {
+      console.log(i)}
+    for (var i = 0; i<100;i++) {
+      var remainder1 = i % 3
+      if (remainder1 === 0){
+        console.log('Fizz')
+        console.log(i)}
+    }
+    for (var i = 0; i<100;i++) {
+      var remainder2 = i % 5
+      if (remainder2 === 0){
+        console.log('Buzz')
+        console.log(i)}
+    }
+    for (var i = 0; i<100; i++) {
+      var remainder1 = i % 3
+      var remainder2 = i % 5
+      if (remainder1 === 0 && remainder2 === 0){
+        console.log('FizzBuzz')
+        console.log(i)}
+    }
 
 
 

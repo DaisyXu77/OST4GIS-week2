@@ -52,8 +52,30 @@
       // Store sum you compute in this variable:
       var yourSum = 0;
 
+      function SumLength(num,str){
+        return yourSum = num+str.length
+      }
+
+      function SumNum(num,num2){
+        return yourSum = num+num2
+      }
+
+      var sumAt=function(i){
+        console.log(i,theArray[i])
+        if (typeof theArray[i] === 'string') {
+          yourSum = SumLength(yourSum,theArray[i])
+        } else if (typeof theArray[i] === 'number') {
+          yourSum = SumNum(yourSum,theArray[i])
+        } else {
+          console.log("Not sure how to proceed with value:", theArray[i])
+        }
+      }
+
       // Refactor the work above into a few different functions that are reusable to the extent that you can
-      for (var i = 0; i < theArray.length, i++) { /* Do stuff here */ }
+
+      for (var i = 0; i < theArray.length; i++) {
+            sumAt(i);
+           }
 
       /* =====================
 

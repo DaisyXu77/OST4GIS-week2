@@ -63,9 +63,15 @@
 
     ===================== */
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+    var restaurant1 = [39.955067, -75.195163,'Ochatto']
+    var restaurant2 = [39.956494, -75.154173,'Ocean City']
+    var restaurant3 = [39.956494, -75.154173,'Lamen']
+    var restaurantData = [restaurant1,restaurant2,restaurant3]
+    for(var i=0;i<restaurantData.length;i++){
+      L.marker([restaurantData[i][0],restaurantData[i][1]]).addTo(map).bindPopup(restaurantData[i][2]).openPopup();
+    }
+
+
 
     /* =====================
 
